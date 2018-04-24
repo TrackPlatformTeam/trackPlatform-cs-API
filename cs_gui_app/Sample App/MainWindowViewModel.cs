@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Threading;
 
-namespace Sample_App
+namespace TrackPlatform.App.Gui
 {
     public class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {

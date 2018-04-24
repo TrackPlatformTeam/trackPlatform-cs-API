@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Runtime.InteropServices;
+using TrackPlatform.Api;
+using TrackPlatform.Other;
 
-namespace Sample_App
+namespace TrackPlatform.App.Gui
 {
     public class ApiManager : IDisposable
     {
-        private const string DllName = "cxx.unmanaged.dll";
-        
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SensorCallback(int sensorIndex, uint value);
 
-        [DllImport(DllName, EntryPoint = "connect", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr Connect(string comAddress, uint speed);
-        [DllImport(DllName, EntryPoint = "disconnect", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void Disconnect(IntPtr manager);
-        [DllImport(DllName, EntryPoint = "set_sensor_callbacks", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void SetSensorCallbacks([MarshalAs(UnmanagedType.FunctionPtr)] SensorCallback distanceSensorCallback, [MarshalAs(UnmanagedType.FunctionPtr)] SensorCallback lineSensorCallback);
+        //private static IntPtr Connect(string comAddress, uint speed);
+        //private static void Disconnect(IntPtr manager);
+        //private static void SetSensorCallbacks(SensorCallback distanceSensorCallback, SensorCallback lineSensorCallback);
 
-        private readonly SensorCallback _distanceCallback;
-        private readonly SensorCallback _lineCallback;
-        private IntPtr _unmanagedPtr = IntPtr.Zero;
+        public event SensorCallback _distanceCallback;
+        public event SensorCallback _lineCallback;
+        //private IntPtr _unmanagedPtr = IntPtr.Zero;
+
+        private Api.Manager _manager;
 
         public ApiManager(SensorCallback distanceCallback, SensorCallback lineCallback)
         {
@@ -35,19 +32,22 @@ namespace Sample_App
         /// <returns>true, if connectio was successful, else false</returns>
         public bool ConnectToDevice(string comAddress, uint speed)
         {
-            if (_unmanagedPtr != IntPtr.Zero)
+            if (_manager != null)
             {
                 return false;
             }
 
-            _unmanagedPtr = Connect(comAddress, speed);
-            if (_unmanagedPtr == IntPtr.Zero)
+            CommunicationInfoStruct info = new CommunicationInfoStruct
             {
-                return false;
-            }
-
-            SetSensorCallbacks(_distanceCallback, _lineCallback);
-            return true;
+                SerialInfo =
+                {
+                    Baudrate = (int) speed,
+                    RxPort = comAddress,
+                    TxPort = comAddress,
+                }
+            };
+            _manager = new Manager(ConnectionModes.Bluetooth, info);
+            return _manager != null;
         }
 
         /// <summary>
@@ -55,10 +55,11 @@ namespace Sample_App
         /// </summary>
         public void Disconnect()
         {
-            if (_unmanagedPtr == IntPtr.Zero) return;
+            if (_manager == null) return;
 
-            Disconnect(_unmanagedPtr);
-            _unmanagedPtr = IntPtr.Zero;
+            _manager.Connector.Disconnect();
+            _manager.Dispose();
+            _manager = null;
         }
 
         private void ReleaseUnmanagedResources()

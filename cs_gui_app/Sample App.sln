@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample App", "Sample App\Sa
 		{8F5424EF-A0F9-452C-A609-0D9E18F5863E} = {8F5424EF-A0F9-452C-A609-0D9E18F5863E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libstem_gamepad", "..\c++\cxx-gamepad-app\gamepad_support\msvc\libstem_gamepad\libstem_gamepad.vcxproj", "{4579D2EA-39EB-4766-9EB6-497500F379D6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cs_api", "..\cs_api\cs_api\cs_api.csproj", "{8F5424EF-A0F9-452C-A609-0D9E18F5863E}"
 EndProject
 Global
@@ -28,12 +26,6 @@ Global
 		{73F9C67C-685E-4C8E-A9B5-4F0D83A0B0A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73F9C67C-685E-4C8E-A9B5-4F0D83A0B0A1}.Release|x86.ActiveCfg = Debug|Any CPU
 		{73F9C67C-685E-4C8E-A9B5-4F0D83A0B0A1}.Release|x86.Build.0 = Debug|Any CPU
-		{4579D2EA-39EB-4766-9EB6-497500F379D6}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{4579D2EA-39EB-4766-9EB6-497500F379D6}.Debug|x86.ActiveCfg = Debug|Win32
-		{4579D2EA-39EB-4766-9EB6-497500F379D6}.Debug|x86.Build.0 = Debug|Win32
-		{4579D2EA-39EB-4766-9EB6-497500F379D6}.Release|Any CPU.ActiveCfg = Debug|Win32
-		{4579D2EA-39EB-4766-9EB6-497500F379D6}.Release|x86.ActiveCfg = Debug|Win32
-		{4579D2EA-39EB-4766-9EB6-497500F379D6}.Release|x86.Build.0 = Debug|Win32
 		{8F5424EF-A0F9-452C-A609-0D9E18F5863E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F5424EF-A0F9-452C-A609-0D9E18F5863E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F5424EF-A0F9-452C-A609-0D9E18F5863E}.Debug|x86.ActiveCfg = Debug|Any CPU
