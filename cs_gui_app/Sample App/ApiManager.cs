@@ -8,20 +8,17 @@ namespace TrackPlatform.App.Gui
     {
         public delegate void SensorCallback(int sensorIndex, uint value);
 
-        //private static IntPtr Connect(string comAddress, uint speed);
-        //private static void Disconnect(IntPtr manager);
-        //private static void SetSensorCallbacks(SensorCallback distanceSensorCallback, SensorCallback lineSensorCallback);
+        public event SensorCallback DistanceCallback;
+        public event SensorCallback LineCallback;
 
-        public event SensorCallback _distanceCallback;
-        public event SensorCallback _lineCallback;
-        //private IntPtr _unmanagedPtr = IntPtr.Zero;
+        private readonly GamepadManager _gamepad = new GamepadManager();
 
-        private Api.Manager _manager;
+        private Manager _manager;
 
         public ApiManager(SensorCallback distanceCallback, SensorCallback lineCallback)
         {
-            _distanceCallback = distanceCallback;
-            _lineCallback = lineCallback;
+            DistanceCallback += distanceCallback;
+            LineCallback += lineCallback;
         }
 
         /// <summary>
@@ -77,5 +74,19 @@ namespace TrackPlatform.App.Gui
         {
             ReleaseUnmanagedResources();
         }
+
+        #region Event invocators
+
+        protected virtual void OnDistanceCallback(int sensorindex, uint value)
+        {
+            DistanceCallback?.Invoke(sensorindex, value);
+        }
+
+        protected virtual void OnLineCallback(int sensorindex, uint value)
+        {
+            LineCallback?.Invoke(sensorindex, value);
+        }
+
+        #endregion
     }
 }
