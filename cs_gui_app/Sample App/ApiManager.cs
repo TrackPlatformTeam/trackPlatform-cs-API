@@ -1,5 +1,6 @@
 ﻿using System;
 using TrackPlatform.Api;
+using TrackPlatform.App.Gui.Gamepad;
 using TrackPlatform.Other;
 
 namespace TrackPlatform.App.Gui

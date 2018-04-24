@@ -76,7 +76,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GamepadManager.cs" />
+    <Compile Include="Gamepad\AnalogController.cs" />
+    <Compile Include="Gamepad\ButtonController.cs" />
+    <Compile Include="Gamepad\GamepadManager.cs" />
+    <Compile Include="Gamepad\StickController.cs" />
+    <Compile Include="Gamepad\Updatable.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

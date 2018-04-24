@@ -3,15 +3,15 @@ using System.Linq;
 using System.Threading;
 using BrandonPotter.XBox;
 
-namespace TrackPlatform.App.Gui
+namespace TrackPlatform.App.Gui.Gamepad
 {
     public class GamepadManager
     {
-        public const int UpdateInfoPeriodInMs = 40;
+        private const int UpdateInfoPeriodInMs = 40;
 
         private Thread _backThread;
         private List<XBoxController> _controllers;
-        private XBoxControllerWatcher _watcher = new XBoxControllerWatcher();
+        private readonly XBoxControllerWatcher _watcher = new XBoxControllerWatcher();
 
         public GamepadManager()
         {
