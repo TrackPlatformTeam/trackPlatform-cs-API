@@ -67,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Gamepad\Enums\Buttons.cs" />
+    <Compile Include="Gamepad\Enums\Sticks.cs" />
+    <Compile Include="Tools\CustomMath.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

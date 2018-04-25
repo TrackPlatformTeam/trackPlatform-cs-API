@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using BrandonPotter.XBox;
@@ -9,16 +10,14 @@ namespace TrackPlatform.App.Gui.Gamepad
     {
         private const int UpdateInfoPeriodInMs = 40;
 
-        private Thread _backThread;
-        private List<XBoxController> _controllers;
+        private Timer _backThread;
+        private readonly List<XBoxController> _controllers;
         private readonly XBoxControllerWatcher _watcher = new XBoxControllerWatcher();
 
         public GamepadManager()
         {
-            _backThread = new Thread(ThreadCallback)
-            {
-                IsBackground = true
-            };
+            Init();
+            _backThread = new Timer(Update, null, 0, UpdateInfoPeriodInMs);
 
             _watcher.ControllerConnected += (c) => { _controllers.Add(c); };
             _watcher.ControllerDisconnected += (c) => { _controllers.Remove(c); };
@@ -26,19 +25,19 @@ namespace TrackPlatform.App.Gui.Gamepad
             _controllers = XBoxController.GetConnectedControllers().ToList();
         }
 
-        private void ThreadCallback()
+        private void Init()
         {
-            while (true)
-            {
-                if (_controllers.Count > 0)
-                {
-                    //TODO: send api commands
-                }
-                else
-                {
-                    Thread.Sleep(UpdateInfoPeriodInMs);
-                }
-            }
+            throw new System.NotImplementedException();
+        }
+
+        private void Update(object state)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private XBoxController GetController()
+        {
+            return _controllers.Count > 0 ? _controllers[0] : null;
         }
     }
 }
