@@ -4,9 +4,9 @@ using TrackPlatform.Example.Logs;
 
 namespace TrackPlatform.Example
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             LogIntegrator.Integrate();
 

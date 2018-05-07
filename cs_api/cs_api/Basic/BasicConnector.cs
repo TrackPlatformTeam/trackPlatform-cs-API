@@ -187,15 +187,15 @@ namespace TrackPlatform.Basic
                     Logger.Log("Sending successfully");
                     return answer;
                 }
-                catch (CorruptedAnswerException)
+                catch (CorruptedAnswerException e)
                 {
                     //All is good, module not answered, try again
-                    Logger.Log("Answer is corrupted");
+                    Logger.Log("Answer is corrupted\n" + e);
                 }
-                catch (TimeoutException)
+                catch (TimeoutException e)
                 {
                     //All is good, module not answered, try again
-                    Logger.Log("Timeout exception");
+                    Logger.Log("Timeout exception\n" + e);
                 }
             }
 
@@ -225,9 +225,10 @@ namespace TrackPlatform.Basic
                 ReadWriteAtomicMutex.ReleaseMutex();
                 return answer;
             }
-            catch
+            catch (Exception e)
             {
                 ReadWriteAtomicMutex.ReleaseMutex();
+                Logger.Log(e.ToString());
                 throw;
             }
         }

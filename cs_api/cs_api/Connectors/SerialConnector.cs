@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.Ports;
-using TrackPlatform.Basic;
-using TrackPlatform.Tools;
 
 namespace TrackPlatform.Connectors
 {

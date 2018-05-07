@@ -1,9 +1,8 @@
-﻿using log4net;
-using TrackPlatform.Other;
+﻿using TrackPlatform.Other;
 
 namespace TrackPlatform.Example.Logs
 {
-    public class LogIntegrator
+    public static class LogIntegrator
     {
         public static void Integrate()
         {
