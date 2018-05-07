@@ -1,5 +1,6 @@
 ﻿using System;
 using TrackPlatform.Api;
+using TrackPlatform.Example.Logs;
 
 namespace TrackPlatform.Example
 {
@@ -7,6 +8,10 @@ namespace TrackPlatform.Example
     {
         static void Main(string[] args)
         {
+            LogIntegrator.Integrate();
+
+            InternalLogger.Log.Info("Application was started");
+
             try
             {
                 UnsafeMain();
@@ -15,6 +20,8 @@ namespace TrackPlatform.Example
             {
                 Console.WriteLine("Exception was catched");
             }
+
+            InternalLogger.Log.Info("Application was finished");
         }
 
         private static void UnsafeMain()
