@@ -43,8 +43,7 @@ namespace TrackPlatform.Connectors
             if ((substringLen) > _buffer.Count)
             {
                 int bytesNeedToRead = Math.Max(substringLen - sizeof(byte), ReadAvailable);
-
-                //TODO: check for max buffer length
+                bytesNeedToRead = Math.Min(bytesNeedToRead, MessageMaxSize);
 
                 int bytesWereRead = ReadStream.Read(_readBuffer, 0, bytesNeedToRead);
 
