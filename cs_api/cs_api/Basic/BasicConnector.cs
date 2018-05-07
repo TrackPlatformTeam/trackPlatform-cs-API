@@ -138,7 +138,7 @@ namespace TrackPlatform.Basic
                 throw new NoConnectionException();
             }
             byte[] package = GeneratePackage(s);
-            Logger.Log("Send: " + package);
+            Logger.Log("Send: " + package.ToHexString());
             for (var i = 0; i < TimesToAutoreconnect; ++i)
             {
                 if (i != 0)
@@ -151,6 +151,7 @@ namespace TrackPlatform.Basic
                 try
                 {
                     byte[] managedAnswer = ReadOneAnswer();
+                    Logger.Log("Getted: " + managedAnswer.ToHexString());
                     if (managedAnswer.SequenceEqual(ErrorAnswer))
                     {
                         Logger.Log("Error was getted (part 1)");
@@ -167,10 +168,11 @@ namespace TrackPlatform.Basic
                     if (isWithAnswer)
                     {
                         answer = ReadOneAnswer();
-                        Logger.Log("Read answer: " + answer);
+                        Logger.Log("Read answer: " + answer.ToHexString());
                     }
 
                     managedAnswer = ReadOneAnswer();
+                    Logger.Log("Getted: " + managedAnswer.ToHexString());
                     if (managedAnswer.SequenceEqual(ErrorAnswer))
                     {
                         Logger.Log("Error was getted (part 2)");

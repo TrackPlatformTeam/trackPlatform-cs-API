@@ -70,6 +70,7 @@
     <Compile Include="Tools\ArrayTools.cs" />
     <Compile Include="Tools\ConvertionTools.cs" />
     <Compile Include="Tools\Crc16.cs" />
+    <Compile Include="Tools\DebugConversionTools.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
