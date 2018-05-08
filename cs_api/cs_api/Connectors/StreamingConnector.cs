@@ -45,7 +45,7 @@ namespace TrackPlatform.Connectors
                 int bytesNeedToRead = Math.Max(substringLen - sizeof(byte), ReadAvailable);
                 bytesNeedToRead = Math.Min(bytesNeedToRead, MessageMaxSize);
 
-                int bytesWereRead = ReadStream.Read(_readBuffer, 0, bytesNeedToRead);
+                int bytesWereRead = ReadStream.ReadBlocking(_readBuffer, 0, bytesNeedToRead);
 
                 if (bytesNeedToRead > bytesWereRead)
                 {
