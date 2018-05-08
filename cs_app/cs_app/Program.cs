@@ -16,9 +16,10 @@ namespace TrackPlatform.Example
             {
                 UnsafeMain();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Console.WriteLine("Exception was catched");
+                InternalLogger.Log.Error(e);
             }
 
             InternalLogger.Log.Info("Application was finished");
