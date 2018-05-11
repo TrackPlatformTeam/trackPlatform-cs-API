@@ -1,20 +1,28 @@
 ﻿using System;
 using TrackPlatform.Api;
+using TrackPlatform.Example.Logs;
 
 namespace TrackPlatform.Example
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
+            LogIntegrator.Integrate();
+
+            InternalLogger.Log.Info("Application was started");
+
             try
             {
                 UnsafeMain();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Console.WriteLine("Exception was catched");
+                InternalLogger.Log.Error(e);
             }
+
+            InternalLogger.Log.Info("Application was finished");
         }
 
         private static void UnsafeMain()
